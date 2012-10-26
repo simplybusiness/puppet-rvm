@@ -1,4 +1,4 @@
-class rvm::packages {
+class rvm::packages($version='latest') {
   anchor { 'rvm::packages::begin': }
   anchor { 'rvm::packages::end': }
   
@@ -30,6 +30,7 @@ class rvm::packages {
   }
   
   class { 'rvm::packages::common':
+    version => $version,
     before  => Anchor['rvm::packages::end'],
   }
 }

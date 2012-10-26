@@ -1,4 +1,4 @@
-class rvm::packages::common {
+class rvm::packages::common($version='latest') {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/rvm/bin',
   }
@@ -9,7 +9,7 @@ class rvm::packages::common {
     unless  => 'which rvm',
   }
   exec { 'install-rvm':
-    command => "bash /tmp/rvm",
+    command => "bash /tmp/rvm --version $version",
     creates => '/usr/local/rvm/bin/rvm',
     require => Exec['download-rvm-install'],
   }
