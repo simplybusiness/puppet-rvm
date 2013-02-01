@@ -13,7 +13,7 @@ define rvm::define::version (
   # Install or uninstall RVM Ruby Version
   if $ensure == 'present' {
     exec { "install-ruby-${name}":
-      command => "/usr/local/rvm/bin/rvm install ${name}",
+      command => "/usr/local/rvm/bin/rvm install ${name} --verify-downloads 1",
       unless  => "rvm list | grep ${name}",
       timeout => '0',
       require => Class['rvm'],
